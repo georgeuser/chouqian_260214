@@ -1,0 +1,257 @@
+/* 基础与安全区（适配微信等内置浏览器） */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #0f0d14;
+  --bg-card: #1a1625;
+  --bg-elevated: #252030;
+  --accent: #c9a227;
+  --accent-dim: #a68b2a;
+  --text: #f0ebe3;
+  --text-muted: #9a8f7f;
+  --border: rgba(201, 162, 39, 0.25);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg-deep);
+  color: var(--text);
+  line-height: 1.5;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px 32px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* 头部 */
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* 签筒区域 */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.lottery-box {
+  width: 100%;
+  min-height: 200px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lottery-inner {
+  text-align: center;
+  position: relative;
+}
+
+.bamboo {
+  width: 48px;
+  height: 80px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #2d4a2d 0%, #1e331e 100%);
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* 抽签按钮 */
+.btn-draw {
+  min-width: 200px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--bg-deep);
+  background: linear-gradient(160deg, var(--accent) 0%, var(--accent-dim) 100%);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(201, 162, 39, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-draw:active {
+  transform: scale(0.98);
+}
+
+.btn-draw:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 结果区域 */
+.result-section {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.result-section.hidden {
+  display: none;
+}
+
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.result-number {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.result-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+.result-poem {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+
+.result-desc {
+  font-size: 0.9rem;
+  margin: 0 0 20px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.btn-again {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-again:active {
+  background: var(--bg-elevated);
+}
+
+/* 抽签动画：签筒轻微晃动 */
+.lottery-box.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  15% { transform: translateX(-6px) rotate(-2deg); }
+  30% { transform: translateX(6px) rotate(2deg); }
+  45% { transform: translateX(-4px) rotate(-1deg); }
+  60% { transform: translateX(4px) rotate(1deg); }
+  75% { transform: translateX(-2px) rotate(-0.5deg); }
+}
+
+/* 签文出现 */
+.result-section.show {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 页脚 */
+.footer {
+  margin-top: auto;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer p {
+  margin: 0;
+}
