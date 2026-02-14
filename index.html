@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1a1625">
+  <title>灵签占卜</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <h1 class="title">灵签占卜</h1>
+      <p class="subtitle">心诚则灵 · 随缘一签</p>
+    </header>
+
+    <main class="main">
+      <div class="lottery-box" id="lotteryBox">
+        <div class="lottery-inner">
+          <div class="bamboo" id="bamboo"></div>
+          <p class="hint" id="hint">点击下方按钮抽签</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn-draw" id="btnDraw" aria-label="抽签">
+        <span class="btn-text">抽一签</span>
+      </button>
+    </main>
+
+    <section class="result-section hidden" id="resultSection">
+      <div class="result-card">
+        <div class="result-header">
+          <span class="result-label" id="resultLabel">上上签</span>
+          <span class="result-number" id="resultNumber">第 1 签</span>
+        </div>
+        <h2 class="result-title" id="resultTitle">签文标题</h2>
+        <p class="result-poem" id="resultPoem">签文诗句</p>
+        <p class="result-desc" id="resultDesc">解签说明</p>
+        <button type="button" class="btn-again" id="btnAgain">再抽一签</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>分享链接或二维码给好友，一起抽签</p>
+    </footer>
+  </div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
